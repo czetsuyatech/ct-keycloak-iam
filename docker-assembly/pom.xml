@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.czetsuyatech</groupId>
+    <artifactId>ct-universal-signon-parent</artifactId>
+    <version>LATEST-SNAPSHOT</version>
+  </parent>
+  <artifactId>docker-assembly</artifactId>
+  <name>CT Keycloak Docker</name>
+  <description>CT Keycloak Docker</description>
+  <packaging>pom</packaging>
+
+  <dependencies>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-providers</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>true</overWriteSnapshots>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-verification-files</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <resources>
+                <resource>
+                  <directory>src/main/verifier</directory>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>
+              <outputDirectory>${project.build.directory}/verifier</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-verifier-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>verify-keycloak-version-dockerfile</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>verify</goal>
+            </goals>
+            <configuration>
+              <verificationFile>${project.build.directory}/verifier/verificationsDockerfile.xml</verificationFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>com.googlecode.maven-download-plugin</groupId>
+        <artifactId>download-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>download-keycloak-zip</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <configuration>
+              <url>https://downloads.jboss.org/keycloak/${keycloak.version}/keycloak-${keycloak.version}.tar.gz</url>
+              <outputFileName>keycloak-${keycloak.version}.tar.gz</outputFileName>
+              <outputDirectory>${project.basedir}/downloads/</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>download-mysql-connector</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <configuration>
+              <url>https://repo1.maven.org/maven2/mysql/mysql-connector-java/${mysql-connector.version}/mysql-connector-java-${mysql-connector.version}.jar</url>
+              <outputFileName>mysql-connector-java-${mysql-connector.version}.jar</outputFileName>
+              <outputDirectory>${project.basedir}/downloads/</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>

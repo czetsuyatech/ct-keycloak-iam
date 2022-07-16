@@ -1,0 +1,17 @@
+.classpath
+.project
+.settings
+.idea
+ct-keycloak-plugin/.settings
+ct-keycloak-plugin/target
+docker-assembly/.settings
+keycloak-*.tar.gz
+mysql-connector-java-*.jar
+docker-assembly/target
+ct-jwt/target
+docker-assembly/downloads
+ct-keycloak-spring-security/target
+target
+ct-jwt/.sts4-cache
+ct-keycloak-plugin/.sts4-cache
+ct-keycloak-spring-security/.sts4-cache

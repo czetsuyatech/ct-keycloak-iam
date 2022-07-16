@@ -1,0 +1,16 @@
+<verifications
+  xmlns="http://maven.apache.org/verifications/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/verifications/1.0.0
+  http://maven.apache.org/xsd/verifications-1.0.0.xsd">
+  <files>
+    <file>
+      <location>docker/Dockerfile</location>
+      <contains>ENV KEYCLOAK_VERSION ${keycloak.version}</contains>
+    </file>
+    <file>
+      <location>docker/Dockerfile</location>
+      <contains>ENV JDBC_MYSQL_VERSION ${mysql-connector.version}</contains>
+    </file>
+  </files>
+</verifications>

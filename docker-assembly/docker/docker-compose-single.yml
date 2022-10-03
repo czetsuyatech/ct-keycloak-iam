@@ -1,18 +1,29 @@
 version: '3'
 
 services:
-  ct-universal-signon:
+  keycloak-db:
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: k3ycl04K
+    command: mysqld --sql_mode=""
+
+  ct-keycloak-iam:
     depends_on:
       - keycloak-db
     build:
       context: ../
-      dockerfile: docker/Dockerfile
+      dockerfile: Dockerfile2
     ports:
       - 8888:8888
       - 8080:8080
       - 8443:8443
     environment:
-#      KEYCLOAK_IMPORT: /opt/jboss/keycloak_install_stage/realms/ct-realm-local-dev.json
+#      KEYCLOAK_IMPORT: /opt/jboss/keycloak_install_stage/realms/ct-keycloak-iam-realm-dev.json
       DEBUG_PORT: 8888
       PROXY_ADDRESS_FORWARDING: 'true'
       JDBC_PARAMS: useSSL=false&allowPublicKeyRetrieval=true

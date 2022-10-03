@@ -1,22 +1,45 @@
-FROM quay.io/keycloak/keycloak:latest as builder
+FROM registry.access.redhat.com/ubi8-minimal
 
-# Add configs, resources
+ENV KEYCLOAK_VERSION 8.0.2
+ENV JDBC_MYSQL_VERSION 5.1.46
 
-COPY src/main/resources/conf /opt/keycloak/conf
+ENV LAUNCH_JBOSS_IN_BACKGROUND 1
+ENV PROXY_ADDRESS_FORWARDING false
+ENV JBOSS_HOME /opt/jboss/keycloak
+ENV LANG en_US.UTF-8
 
-RUN ls -l /opt/keycloak/conf
+ENV KEYCLOAK_IMPORT /opt/jboss/keycloak_install_stage/realms/cx-realm.json
 
-# Install custom providers
-#RUN curl -sL https://github.com/aerogear/keycloak-metrics-spi/releases/download/2.5.3/keycloak-metrics-spi-2.5.3.jar -o /opt/keycloak/providers/keycloak-metrics-spi-2.5.3.jar
-RUN /opt/keycloak/bin/kc.sh build
+ARG KEYCLOAK_DIST_BASE=https://downloads.jboss.org/keycloak/$KEYCLOAK_VERSION/
+ARG KEYCLOAK_DIST_FILE=keycloak-$KEYCLOAK_VERSION.tar.gz
 
-FROM quay.io/keycloak/keycloak:latest
-COPY --from=builder /opt/keycloak/ /opt/keycloak/
-WORKDIR /opt/keycloak
+ARG JDBC_MYSQL_JAR_BASE=https://repo1.maven.org/maven2/mysql/mysql-connector-java/$JDBC_MYSQL_VERSION/
+ARG JDBC_MYSQL_JAR_FILE=mysql-connector-java-$JDBC_MYSQL_VERSION.jar
 
-# for demonstration purposes only, please make sure to use proper certificates in production instead
-RUN keytool -genkeypair -storepass password -storetype PKCS12 -keyalg RSA -keysize 2048 -dname "CN=server" -alias \
-    server -ext "SAN:c=DNS:localhost,IP:127.0.0.1,IP:192.168.1.18" -keystore conf/server.keystore
-# change these values to point to a running datastore instance
+USER root
 
-ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "-cf keycloak.conf", "start"]
+RUN microdnf update -y && microdnf install -y glibc-langpack-en gzip hostname java-11-openjdk-headless openssl tar which && microdnf clean all
+
+ADD src/main/resources/tools /opt/jboss/tools
+RUN chmod +x /opt/jboss/tools/*
+
+ADD src/main/resources/themes /opt/jboss/keycloak_install_stage/themes
+
+ADD src/main/resources/realms /opt/jboss/keycloak_install_stage/realms
+
+ADD src/main/resources/override /opt/jboss/keycloak_install_stage/override
+
+ADD downloads /opt/jboss/keycloak_install_stage/downloads
+
+ADD target/keycloak_providers /opt/jboss/keycloak_install_stage/keycloak_providers
+
+RUN /opt/jboss/tools/build-keycloak.sh
+
+USER 1000
+
+EXPOSE 8080
+EXPOSE 8443
+
+ENTRYPOINT [ "/opt/jboss/tools/docker-entrypoint.sh" ]
+
+CMD ["-b", "0.0.0.0"]

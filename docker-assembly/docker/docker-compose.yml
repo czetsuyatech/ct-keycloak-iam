@@ -17,7 +17,7 @@ services:
       - keycloak-db
     build:
       context: ../
-      dockerfile: Dockerfile2
+      dockerfile: docker/Dockerfile
     ports:
       - 8888:8888
       - 8080:8080
@@ -28,6 +28,6 @@ services:
       PROXY_ADDRESS_FORWARDING: 'true'
       JDBC_PARAMS: useSSL=false&allowPublicKeyRetrieval=true
 
-      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN: keycloak.admin
       KEYCLOAK_ADMIN_PASSWORD: keycloak.admin
       KC_HOSTNAME_STRICT: false

@@ -5,10 +5,13 @@
 .idea
 docker-assembly/.settings
 
+# Submodules
+ct-keycloak-spis
+
 # Files
 docker-assembly/downloads
 
-# Artiafcts
+# Artifacts
 keycloak-*.tar.gz
 mysql-connector-java-*.jar
 

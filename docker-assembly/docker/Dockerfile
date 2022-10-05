@@ -1,5 +1,7 @@
 FROM registry.access.redhat.com/ubi8-minimal
 
+# Environment Variables
+
 ENV KEYCLOAK_VERSION 16.1.1
 ENV JDBC_MYSQL_VERSION 8.0.29
 
@@ -9,6 +11,8 @@ ENV JBOSS_HOME /opt/jboss/keycloak
 ENV LANG en_US.UTF-8
 
 ENV KEYCLOAK_IMPORT /opt/jboss/keycloak_install_stage/realms/ct-realm-dev.json
+
+# Bash Variables
 
 ARG KEYCLOAK_DIST_BASE=https://github.com/keycloak/keycloak/releases/download/$KEYCLOAK_VERSION/
 ARG KEYCLOAK_DIST_FILE=keycloak-$KEYCLOAK_VERSION.tar.gz
@@ -20,8 +24,10 @@ USER root
 
 RUN microdnf update -y && microdnf install -y glibc-langpack-en gzip hostname java-11-openjdk-headless openssl tar which && microdnf clean all
 
-ADD src/main/resources/tools /opt/jboss/tools
-RUN chmod +x /opt/jboss/tools/*
+ADD src/main/resources/modules /opt/jboss/modules
+
+ADD src/main/resources/build /opt/jboss/build
+RUN chmod +x /opt/jboss/build/*
 
 #ADD src/main/resources/themes /opt/jboss/keycloak_install_stage/themes
 #
@@ -33,7 +39,7 @@ ADD downloads /opt/jboss/keycloak_install_stage/downloads
 
 #ADD target/keycloak_providers /opt/jboss/keycloak_install_stage/keycloak_providers
 
-RUN /opt/jboss/tools/build-keycloak.sh
+RUN /opt/jboss/build/build-keycloak.sh
 
 USER 1000
 
@@ -41,6 +47,6 @@ EXPOSE 8080
 EXPOSE 8443
 EXPOSE 9990
 
-ENTRYPOINT [ "/opt/jboss/tools/docker-entrypoint.sh" ]
+ENTRYPOINT [ "/opt/jboss/build/docker-entrypoint.sh" ]
 
 CMD ["-b", "0.0.0.0"]

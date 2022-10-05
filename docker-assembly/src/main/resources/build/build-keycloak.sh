@@ -38,7 +38,7 @@ else
     curl -O "$mysqlConnectorUrl"
 fi
 
-cp /opt/jboss/tools/databases/mysql/module.xml .
+cp /opt/jboss/modules/databases/mysql/module.xml .
 
 ###################
 # Set Permissions #

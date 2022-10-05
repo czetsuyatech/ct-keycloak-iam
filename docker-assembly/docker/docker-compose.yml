@@ -4,7 +4,7 @@ services:
   keycloak-db:
     image: mysql:8.0
     ports:
-      - 3306:3306
+      - 33066:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: keycloak
@@ -22,12 +22,20 @@ services:
       - 8888:8888
       - 8080:8080
       - 8443:8443
+      - 9990:9990
     environment:
-#      KEYCLOAK_IMPORT: /opt/jboss/keycloak_install_stage/realms/ct-keycloak-iam-realm-dev.json
+      DB_ADDR: keycloak-db
+      DB_PORT: 3306
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: k3ycl04K
+      DB_JDBC_PARAMS: ?useSSL=false&allowPublicKeyRetrieval=true
+
+      KEYCLOAK_IMPORT: /opt/jboss/keycloak_install_stage/realms/ct-realm-dev.json
+      KEYCLOAK_USER: keycloak.admin
+      KEYCLOAK_PASSWORD: keycloak.admin
+
+      KC_HOSTNAME_STRICT: false
+
       DEBUG_PORT: 8888
       PROXY_ADDRESS_FORWARDING: 'true'
-      JDBC_PARAMS: useSSL=false&allowPublicKeyRetrieval=true
-
-      KEYCLOAK_ADMIN: keycloak.admin
-      KEYCLOAK_ADMIN_PASSWORD: keycloak.admin
-      KC_HOSTNAME_STRICT: false

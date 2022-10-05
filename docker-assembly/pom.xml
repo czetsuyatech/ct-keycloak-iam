@@ -37,29 +37,6 @@
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>copy-verification-files</id>
-            <phase>validate</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <resources>
-                <resource>
-                  <directory>src/main/verifier</directory>
-                  <filtering>true</filtering>
-                </resource>
-              </resources>
-              <outputDirectory>${project.build.directory}/verifier</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-verifier-plugin</artifactId>
         <executions>
           <execution>
@@ -69,7 +46,7 @@
               <goal>verify</goal>
             </goals>
             <configuration>
-              <verificationFile>${project.build.directory}/verifier/verificationsDockerfile.xml</verificationFile>
+              <verificationFile>${project.build.directory}/verificationsDockerfile.xml</verificationFile>
             </configuration>
           </execution>
         </executions>

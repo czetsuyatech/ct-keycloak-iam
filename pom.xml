@@ -13,7 +13,7 @@
     <javadoc.version>11</javadoc.version>
 
     <jboss-logging.version>3.5.0.Final</jboss-logging.version>
-    <keycloak.version>18.0.2</keycloak.version>
+    <keycloak.version>16.1.1</keycloak.version>
     <mysql-connector.version>8.0.29</mysql-connector.version>
     <lombok.version>1.18.24</lombok.version>
     <jackson.version>2.13.3</jackson.version>

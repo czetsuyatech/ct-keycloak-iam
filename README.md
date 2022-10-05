@@ -26,3 +26,21 @@ docker-compose -f ./docker-assembly/docker/docker-compose-single.yml down
 ```
 
 Add the -v parameter to remove the volumes.
+
+## SubModules
+
+### Add
+
+```shell
+git submodule add -b main git@github.com:czetsuya/ct-keycloak-plugins.git
+```
+
+### Fetch
+
+```shell
+// pull all the sub modules for the first time
+git submodule update --init --recursive
+
+// update the sub modules
+git submodule update --recursive --remote
+```

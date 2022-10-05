@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.czetsuyatech</groupId>
-    <artifactId>ct-universal-signon-parent</artifactId>
+    <artifactId>ct-keycloak-iam</artifactId>
     <version>LATEST-SNAPSHOT</version>
   </parent>
   <artifactId>docker-assembly</artifactId>

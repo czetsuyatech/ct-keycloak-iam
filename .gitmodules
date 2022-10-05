@@ -1,0 +1,4 @@
+[submodule "ct-keycloak-plugins"]
+	path = ct-keycloak-plugins
+	url = git@github.com:czetsuya/ct-keycloak-plugins.git
+	branch = main

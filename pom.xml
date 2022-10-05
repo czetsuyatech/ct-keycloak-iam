@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>com.czetsuyatech</groupId>
-  <artifactId>ct-universal-signon-parent</artifactId>
+  <artifactId>ct-keycloak-iam</artifactId>
   <version>LATEST-SNAPSHOT</version>
-  <name>CT Universal SignOn</name>
-  <description>CT Universal SignOn</description>
+  <name>CT Keycloak IAM</name>
+  <description>CT Keycloak IAM</description>
   <packaging>pom</packaging>
 
   <properties>
-    <java.version>11</java.version>
-    <javadoc.version>11</javadoc.version>
+    <java.version>17</java.version>
+    <javadoc.version>17</javadoc.version>
 
     <jboss-logging.version>3.5.0.Final</jboss-logging.version>
     <keycloak.version>16.1.1</keycloak.version>

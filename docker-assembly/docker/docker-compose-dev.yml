@@ -9,7 +9,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: keycloak
       MYSQL_USER: keycloak
-      MYSQL_PASSWORD: k3ycl04K
+      MYSQL_PASSWORD: ipiel
     command: mysqld --sql_mode=""
 
   ct-keycloak-iam:
@@ -28,7 +28,7 @@ services:
       DB_PORT: 3306
       DB_DATABASE: keycloak
       DB_USER: keycloak
-      DB_PASSWORD: k3ycl04K
+      DB_PASSWORD: ipiel
       DB_JDBC_PARAMS: ?useSSL=false&allowPublicKeyRetrieval=true
 
       KEYCLOAK_IMPORT: /opt/jboss/keycloak_install_stage/realms/ct-realm-dev.json

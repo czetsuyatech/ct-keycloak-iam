@@ -1,4 +1,4 @@
-[submodule "ct-keycloak-plugins"]
-	path = ct-keycloak-plugins
-	url = git@github.com:czetsuya/ct-keycloak-plugins.git
+[submodule "ct-keycloak-spis"]
+	path = ct-keycloak-spis
+	url = git@github.com:czetsuya/ct-keycloak-spis.git
 	branch = main

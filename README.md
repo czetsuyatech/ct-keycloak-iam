@@ -8,8 +8,10 @@ extending Keycloak through it's SPIs such as storage, authentication, identity p
 Start MySQL and the custom Keycloak server.
 
 ```
-docker-compose -f ./docker-assembly/docker/docker-compose-dev.yml up
+docker-compose -f ./docker-assembly/docker/docker-compose-dev.yml up --build
 ```
+
+The --build parameter, makes sure that the docker image is rebuilt before launching it.
 
 Stop the Keycloak server, add the -v parameter to delete the volumes
 
@@ -20,8 +22,11 @@ docker-compose -f ./docker-assembly/docker/docker-compose-dev.yml down -v
 ## Production
 
 ```
-docker run --name mysql_8 -e MYSQL_ROOT_PASSWORD=ipiel -e MYSQL_USER=keycloak_user -e MYSQL_PASSWORD=k3yc10@K -e MYSQL_DATABASE=keycloak -p 33306:3306 -d mysql:8.0.29
+docker run --name mysql_8 -e MYSQL_ROOT_PASSWORD=<xxx> -e MYSQL_USER=<xxx> -e MYSQL_PASSWORD=<xxx> -e 
+MYSQL_DATABASE=keycloak -p 33306:3306 -d mysql:8.0.29
 ```
+
+Or use a hosted MySQL installation.
 
 Start the container.
 

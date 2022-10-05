@@ -40,6 +40,16 @@ fi
 
 cp /opt/jboss/modules/databases/mysql/module.xml .
 
+##############################
+# Install Keycloak Providers #
+##############################
+
+mkdir -p /opt/jboss/keycloak/providers
+cp /opt/jboss/keycloak_install_stage/keycloak_providers/*.jar /opt/jboss/keycloak/providers
+
+echo "Providers installed"
+ls -laR /opt/jboss/keycloak/providers
+
 ###################
 # Set Permissions #
 ###################

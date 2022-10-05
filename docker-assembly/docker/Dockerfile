@@ -37,7 +37,7 @@ RUN chmod +x /opt/jboss/build/*
 #
 ADD downloads /opt/jboss/keycloak_install_stage/downloads
 
-#ADD target/keycloak_providers /opt/jboss/keycloak_install_stage/keycloak_providers
+ADD target/keycloak_providers /opt/jboss/keycloak_install_stage/keycloak_providers
 
 RUN /opt/jboss/build/build-keycloak.sh
 

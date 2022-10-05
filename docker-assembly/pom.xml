@@ -1,22 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.czetsuyatech</groupId>
     <artifactId>ct-keycloak-iam</artifactId>
     <version>LATEST-SNAPSHOT</version>
   </parent>
+
   <artifactId>docker-assembly</artifactId>
   <name>CT Keycloak Docker</name>
   <description>CT Keycloak Docker</description>
   <packaging>pom</packaging>
 
   <dependencies>
-
+    <dependency>
+      <groupId>com.czetsuyatech</groupId>
+      <artifactId>ct-keycloak-spis</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-providers</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.czetsuyatech</groupId>
+                  <artifactId>ct-keycloak-spis</artifactId>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/keycloak_providers</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>true</overWriteSnapshots>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>com.googlecode.maven-download-plugin</groupId>
         <artifactId>download-maven-plugin</artifactId>
@@ -40,15 +71,15 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://repo1.maven.org/maven2/mysql/mysql-connector-java/${mysql-connector.version}/mysql-connector-java-${mysql-connector.version}.jar</url>
+              <url>
+                https://repo1.maven.org/maven2/mysql/mysql-connector-java/${mysql-connector.version}/mysql-connector-java-${mysql-connector.version}.jar
+              </url>
               <outputFileName>mysql-connector-java-${mysql-connector.version}.jar</outputFileName>
               <outputDirectory>${project.basedir}/downloads/</outputDirectory>
             </configuration>
           </execution>
         </executions>
       </plugin>
-
     </plugins>
   </build>
-
 </project>

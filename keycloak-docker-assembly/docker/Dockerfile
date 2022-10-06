@@ -24,18 +24,18 @@ USER root
 
 RUN microdnf update -y && microdnf install -y glibc-langpack-en gzip hostname java-11-openjdk-headless openssl tar which && microdnf clean all
 
-ADD src/main/resources/modules /opt/jboss/modules
-
 ADD src/main/resources/build /opt/jboss/build
 RUN chmod +x /opt/jboss/build/*
 
-#ADD src/main/resources/themes /opt/jboss/keycloak_install_stage/themes
-#
-#ADD src/main/resources/realms /opt/jboss/keycloak_install_stage/realms
-#
-#ADD src/main/resources/override /opt/jboss/keycloak_install_stage/override
-#
 ADD downloads /opt/jboss/keycloak_install_stage/downloads
+
+ADD src/main/resources/modules /opt/jboss/modules
+
+ADD src/main/resources/realms /opt/jboss/keycloak_install_stage/realms
+
+#ADD src/main/resources/themes /opt/jboss/keycloak_install_stage/themes
+
+#ADD src/main/resources/override /opt/jboss/keycloak_install_stage/override
 
 ADD target/keycloak_providers /opt/jboss/keycloak_install_stage/keycloak_providers
 

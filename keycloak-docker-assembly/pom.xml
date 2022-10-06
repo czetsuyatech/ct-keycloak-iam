@@ -8,7 +8,7 @@
     <version>LATEST-SNAPSHOT</version>
   </parent>
 
-  <artifactId>docker-assembly</artifactId>
+  <artifactId>keycloak-docker-assembly</artifactId>
   <name>CT Keycloak Docker</name>
   <description>CT Keycloak Docker</description>
   <packaging>pom</packaging>

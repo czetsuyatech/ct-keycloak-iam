@@ -23,7 +23,7 @@
   </properties>
 
   <modules>
-    <module>docker-assembly</module>
+    <module>keycloak-docker-assembly</module>
     <module>ct-keycloak-spis</module>
   </modules>
 

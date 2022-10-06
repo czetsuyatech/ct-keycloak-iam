@@ -73,5 +73,13 @@ echo ""
 
 /bin/sh /opt/jboss/build/set-database.sh $DB_VENDOR
 
+################
+# Import Realm #
+################
+
+if [[ -n ${KEYCLOAK_IMPORT:-} ]]; then
+  KEYCLOAK_ARGS+=" -Dkeycloak.import=$KEYCLOAK_IMPORT"
+fi
+
 exec /opt/jboss/keycloak/bin/standalone.sh $KEYCLOAK_ARGS $@
 exit $?

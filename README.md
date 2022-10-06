@@ -8,7 +8,7 @@ extending Keycloak through it's SPIs such as storage, authentication, identity p
 Start MySQL and the custom Keycloak server.
 
 ```
-docker-compose -f ./docker-assembly/docker/docker-compose-dev.yml up --build
+docker-compose -f ./keycloak-docker-assembly/docker/docker-compose-dev.yml up --build
 ```
 
 The --build parameter, makes sure that the docker image is rebuilt before launching it.
@@ -16,7 +16,7 @@ The --build parameter, makes sure that the docker image is rebuilt before launch
 Stop the Keycloak server, add the -v parameter to delete the volumes
 
 ```
-docker-compose -f ./docker-assembly/docker/docker-compose-dev.yml down -v
+docker-compose -f ./keycloak-docker-assembly/docker/docker-compose-dev.yml down -v
 ```
 
 ## Production
@@ -40,7 +40,7 @@ Add the --build parameter to rebuild the images.
 Stop the containers.
 
 ```
-docker-compose -f ./docker-assembly/docker/docker-compose-single.yml down
+docker-compose -f ./keycloak-docker-assembly/docker/docker-compose-single.yml down
 ```
 
 Add the -v parameter to remove the volumes.

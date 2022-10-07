@@ -6,6 +6,7 @@
 docker-assembly/.settings
 
 # Submodules
+ct-keycloak-spis
 
 # Files
 docker-assembly/downloads

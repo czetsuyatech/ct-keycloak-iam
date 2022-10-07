@@ -1,7 +1,13 @@
 # CT Keycloak IAM
 
-This project extends Keycloak authentication server to cover complicated enterprise grade use cases such as n-level 
-resellers by extending Keycloak through it's SPIs such as storage, authentication, identity provider, etc.
+This project extends the Keycloak authentication server to cover complicated enterprise use cases such as 
+multi-tenancy, custom storage, n-level resellers by extending Keycloak through its SPIs such as storage, 
+authentication, identity provider, etc.
+
+## Features
+- Multi-tenant
+- Custom storage
+- N-reseller level
 
 **WIKI**
 - [Development Guide](docs/development.md)

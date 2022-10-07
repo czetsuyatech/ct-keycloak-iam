@@ -1,6 +1,6 @@
 # Development
 
-This product is using the following versions:
+This product uses the following versions:
 - Keycloak 16.1.1
 - MySQL JDBC driver 8.0.29
 
@@ -10,9 +10,9 @@ This product is using the following versions:
 docker-compose -f ./keycloak-docker-assembly/docker/docker-compose-dev.yml up --build
 ```
 
-The --build parameter, makes sure that the docker image is rebuilt before launching it.
+The --build parameter ensures that the docker image is rebuilt before launching.
 
-Stop the Keycloak server, add the -v parameter to delete the volumes
+Stop the Keycloak server, and add the -v parameter to delete the volumes.
 
 ```
 docker-compose -f ./keycloak-docker-assembly/docker/docker-compose-dev.yml down -v
@@ -21,7 +21,7 @@ docker-compose -f ./keycloak-docker-assembly/docker/docker-compose-dev.yml down 
 ## SubModules
 
 This project is built such that the main project with customized Keycloak running on Docker is exposed to the public.
-Its submodules are hosted on another repositories in private such as Keycloak SPIs, Spring Security, etc.
+Its submodules are hosted on other repositories in private such as Keycloak SPIs, Spring Security, etc.
 
 **Add the submodules to your project**
 
@@ -31,12 +31,12 @@ If you have access to the private repositories, you can check them out by runnin
 git submodule add -b main git@github.com:czetsuya/ct-keycloak-spis.git
 ```
 
-**If you already downloaded the sub modules and wanted to get an update**
+**If you already downloaded the sub-modules and wanted to get an update**
 
 ```shell
-// pull all the sub modules for the first time
+// pull all the sub-modules for the first time
 git submodule update --init --recursive
 
-// update the sub modules
+// update the submodules
 git submodule update --recursive --remote
 ```

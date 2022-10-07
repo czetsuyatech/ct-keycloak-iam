@@ -20,6 +20,13 @@ fi
 
 mv /opt/jboss/keycloak-??.?.?* /opt/jboss/keycloak
 
+##########################
+# Install Custom Theme/s #
+##########################
+
+mkdir -p /opt/jboss/keycloak/themes
+cp -R /opt/jboss/keycloak_install_stage/themes/* /opt/jboss/keycloak/themes
+
 ###########################
 # Create Database Modules #
 ###########################

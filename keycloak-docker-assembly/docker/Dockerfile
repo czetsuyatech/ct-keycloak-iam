@@ -33,7 +33,7 @@ ADD src/main/resources/modules /opt/jboss/modules
 
 ADD src/main/resources/realms /opt/jboss/keycloak_install_stage/realms
 
-#ADD src/main/resources/themes /opt/jboss/keycloak_install_stage/themes
+ADD src/main/resources/themes /opt/jboss/keycloak_install_stage/themes
 
 #ADD src/main/resources/override /opt/jboss/keycloak_install_stage/override
 

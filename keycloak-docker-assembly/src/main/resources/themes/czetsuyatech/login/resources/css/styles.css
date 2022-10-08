@@ -9,6 +9,7 @@
 }
 
 .login-pf {
+  background: none;
   height: 100%;
   width: 100%;
 }
@@ -118,4 +119,21 @@ input[type="submit"]:hover {
 }
 
 @media (max-width: 750px) {
+  .login-pf-page-header,
+  .login-pf body {
+    background-color: #fff;
+  }
+  .login-pf-page {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .login-pf-page-header {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    flex: 0 0 15em;
+  }
+  .card-pf {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
 }

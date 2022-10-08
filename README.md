@@ -5,6 +5,8 @@ multi-tenancy, custom storage, n-level resellers by extending Keycloak through i
 authentication, identity provider, etc.
 
 ## Features
+
+- Custom login page
 - Multi-tenant
 - Custom storage
 - N-reseller level

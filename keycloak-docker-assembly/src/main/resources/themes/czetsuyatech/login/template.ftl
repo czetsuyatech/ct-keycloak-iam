@@ -41,7 +41,7 @@
     <div id="kc-header" class="${properties.kcHeaderClass!}">
 
         <div class="logo">
-            <img alt="logo"/>
+            <img alt="Czetsuya Tech" src="${url.resourcesPath}/img/ct-logo.svg" width="120"/>
         </div>
 
         <div id="kc-header-wrapper"

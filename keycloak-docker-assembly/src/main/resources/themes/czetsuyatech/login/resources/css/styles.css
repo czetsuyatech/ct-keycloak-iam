@@ -2,17 +2,10 @@
 
 :root {
   font-size: 14px;
-}
-
-*,
-body {
-  margin: 0;
-  padding: 0;
-}
-
-.login-pf-page {
-  margin: 0;
-  padding: 0;
+  --pf-global--BackgroundColor--light-100: #fff;
+  --pf-c-button--m-primary--BackgroundColor: #36383a;
+  --pf-global--primary-color--100: #36383a;
+  --pf-global--primary-color--200:#f2a92e
 }
 
 .login-pf {
@@ -21,7 +14,7 @@ body {
 }
 
 .login-pf body {
-  background: #f3f4f9;
+  background: #e4e4e4;
   font-family: Roboto;
   height: 100%;
   margin: 0;
@@ -32,6 +25,7 @@ body {
 }
 
 .login-pf-page {
+  padding: 50px;
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -39,19 +33,25 @@ body {
 }
 
 .login-pf-page-header {
-  background-color: green;
   height: 100%;
   flex: 0 0 35em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  background-color: #36383a;
 }
 
 .card-pf {
-  background-color: red;
   border-top: 0;
   margin: 0;
   flex: 0 0 35em;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
 }
 
 .login-pf-page .login-pf-header h1 {
@@ -62,14 +62,10 @@ body {
   text-align: left;
 }
 
-.form-group input {
-  width: 100%;
-  height: 48px;
-}
-
 input[type="text"],
 input[type="password"],
 select {
+  height: 48px;
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -94,12 +90,32 @@ input[type="submit"]:hover {
   background-color: #45a049;
 }
 
+#kc-form-options .checkbox {
+  padding: 0;
+  margin: 0;
+}
+
 .pf-c-form__label {
   font-weight: bolder;
 }
 
+.pf-c-button,
+.pf-c-button.pf-m-primary {
+  color: var(--pf-c-button--m-primary--Color);
+  background-color: var(--pf-c-button--m-primary--BackgroundColor);
+}
+
+.pf-m-primary:hover {
+  background-color: #f2a92e !important;
+  color: #36383a !important;
+}
+
+.login-subtitle {
+  font-size: 1rem;
+  line-height: 1.4rem;
+  padding: 16px 0 16px 0;
+  color: #3b97d5;
+}
+
 @media (max-width: 750px) {
-  .login-pf-page {
-    flex-direction: column;
-  }
 }

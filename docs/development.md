@@ -12,6 +12,8 @@ docker-compose -f ./keycloak-docker-assembly/docker/docker-compose-dev.yml up --
 
 The --build parameter ensures that the docker image is rebuilt before launching.
 
+The default keycloak account is keycloak.admin / keycloak.admin.
+
 Stop the Keycloak server, and add the -v parameter to delete the volumes.
 
 ```

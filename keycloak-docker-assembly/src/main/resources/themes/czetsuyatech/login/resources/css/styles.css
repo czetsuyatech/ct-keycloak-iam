@@ -118,6 +118,10 @@ input[type="submit"]:hover {
   color: #3b97d5;
 }
 
+.pf-m-error {
+  color: #ff0000 !important;
+}
+
 @media (max-width: 750px) {
   .login-pf-page-header,
   .login-pf body {

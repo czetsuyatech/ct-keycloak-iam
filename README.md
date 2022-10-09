@@ -1,28 +1,27 @@
-# ct-universal-signon
+# CT Keycloak IAM
 
-This project provide customized SSO on top of Keycloak framework and deployed on AWS ECS service.
+This project extends the Keycloak authentication server to cover complicated enterprise use cases such as
+multi-tenancy, custom storage, n-level resellers by extending Keycloak through its SPIs such as storage,
+authentication, identity provider, etc.
 
-## Development
+## Features
 
-Start MySQL docker container for testing.
+### Custom login page
 
-```
-docker run --name mysql_8 -e MYSQL_ROOT_PASSWORD=ipiel -e MYSQL_USER=keycloak_user -e MYSQL_PASSWORD=k3yc10@K -e MYSQL_DATABASE=keycloak -p 33306:3306 -d mysql:8.0.29
-```
+A custom theme "czetsuyatech" is configured when you run the container.
 
-Start the container.
+![Login Page](docs/img/login-page.png)
 
-```
-docker-compose -f ./docker-assembly/docker/docker-compose-single.yml up
-```
+The theme is available at keycloak-docker-assembly/src/main/resources/themes/czetsuyatech and can easily be overriden.
 
-Add the --build parameter to rebuild the images.
+### Custom storage
 
+### Multi-tenant
 
-Stop the containers.
+### N-reseller level
 
-```
-docker-compose -f ./docker-assembly/docker/docker-compose-single.yml down
-```
+## WIKI
 
-Add the -v parameter to remove the volumes.
+- [Development Guide](docs/development.md)
+- [Production Guide](docs/production.md)
+- [Troubleshooting Guide](docs/troubleshooting-guide.md)

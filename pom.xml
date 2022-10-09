@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>com.czetsuyatech</groupId>
-  <artifactId>ct-universal-signon-parent</artifactId>
+  <artifactId>ct-keycloak-iam</artifactId>
   <version>LATEST-SNAPSHOT</version>
-  <name>CT Universal SignOn</name>
-  <description>CT Universal SignOn</description>
+  <name>CT Keycloak IAM</name>
+  <description>CT Keycloak IAM</description>
   <packaging>pom</packaging>
 
   <properties>
@@ -13,29 +15,31 @@
     <javadoc.version>11</javadoc.version>
 
     <jboss-logging.version>3.5.0.Final</jboss-logging.version>
-    <keycloak.version>18.0.2</keycloak.version>
+    <keycloak.version>16.1.1</keycloak.version>
     <mysql-connector.version>8.0.29</mysql-connector.version>
     <lombok.version>1.18.24</lombok.version>
     <jackson.version>2.13.3</jackson.version>
     <spring-boot.version>2.7.1</spring-boot.version>
-
   </properties>
 
   <modules>
-    <module>docker-assembly</module>
+    <module>keycloak-docker-assembly</module>
+    <module>ct-keycloak-spis</module>
   </modules>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>org.keycloak.bom</groupId>
+        <artifactId>keycloak-adapter-bom</artifactId>
+        <version>${keycloak.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
         <groupId>org.jboss.logging</groupId>
         <artifactId>jboss-logging</artifactId>
         <version>${jboss-logging.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.keycloak</groupId>
-        <artifactId>keycloak-core</artifactId>
-        <version>${keycloak.version}</version>
       </dependency>
       <dependency>
         <groupId>org.keycloak</groupId>
@@ -44,55 +48,9 @@
       </dependency>
       <dependency>
         <groupId>org.keycloak</groupId>
-        <artifactId>keycloak-server-spi-private</artifactId>
+        <artifactId>keycloak-core</artifactId>
         <version>${keycloak.version}</version>
       </dependency>
-      <dependency>
-        <groupId>org.keycloak</groupId>
-        <artifactId>keycloak-services</artifactId>
-        <version>${keycloak.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.keycloak.bom</groupId>
-        <artifactId>keycloak-adapter-bom</artifactId>
-        <version>${keycloak.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${lombok.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-annotations</artifactId>
-        <version>${jackson.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>${jackson.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-security</artifactId>
-        <version>${spring-boot.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.carlsberg.cx.iam-services</groupId>
-        <artifactId>iam-services-client</artifactId>
-        <version>${cx-iam-services.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.carlsberg.cx.notification-services</groupId>
-        <artifactId>notification-services-client</artifactId>
-        <version>${cx-notification-services.version}</version>
-      </dependency>
-
     </dependencies>
   </dependencyManagement>
 

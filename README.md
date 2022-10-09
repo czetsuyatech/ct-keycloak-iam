@@ -4,6 +4,13 @@ This project extends the Keycloak authentication server to cover complicated ent
 multi-tenancy, custom storage, n-level resellers by extending Keycloak through its SPIs such as storage,
 authentication, identity provider, etc.
 
+## Versions
+
+This project is running on:
+
+- Keycloak 16.1.1
+- MySQL JDBC Driver 8.0.29
+
 ## Features
 
 ### Custom login page
@@ -14,11 +21,14 @@ A custom theme "czetsuyatech" is configured when you run the container.
 
 The theme is available at keycloak-docker-assembly/src/main/resources/themes/czetsuyatech and can easily be overriden.
 
-### Custom storage
 
 ### Multi-tenant
 
+TODO
+
 ### N-reseller level
+
+TODO
 
 ## WIKI
 

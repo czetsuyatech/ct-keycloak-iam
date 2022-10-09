@@ -24,3 +24,4 @@ The theme is available at keycloak-docker-assembly/src/main/resources/themes/cze
 
 - [Development Guide](docs/development.md)
 - [Production Guide](docs/production.md)
+- [Troubleshooting Guide](docs/troubleshooting-guide.md)

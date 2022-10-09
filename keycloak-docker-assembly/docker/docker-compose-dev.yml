@@ -29,7 +29,7 @@ services:
       DB_DATABASE: keycloak
       DB_USER: keycloak
       DB_PASSWORD: ipiel
-      DB_JDBC_PARAMS: ?useSSL=false&allowPublicKeyRetrieval=true
+      DB_JDBC_PARAMS: useSSL=false&allowPublicKeyRetrieval=true
 
       KEYCLOAK_IMPORT: /opt/jboss/keycloak_install_stage/realms/ct-realm-dev.json
       KEYCLOAK_USER: keycloak.admin

@@ -60,9 +60,8 @@ file_env 'DB_PASSWORD'
 export DB_VENDOR="mysql"
 DB_NAME="MySQL"
 
-# Append '?' in the beggining of the string if JDBC_PARAMS value isn't empty
-JDBC_PARAMS=$(echo "${JDBC_PARAMS:-}" | sed '/^$/! s/^/?/')
-export JDBC_PARAMS
+DB_JDBC_PARAMS=$(echo "${DB_JDBC_PARAMS:-}" | sed '/^$/! s/^/?/')
+export DB_JDBC_PARAMS
 
 echo "========================================================================="
 echo ""

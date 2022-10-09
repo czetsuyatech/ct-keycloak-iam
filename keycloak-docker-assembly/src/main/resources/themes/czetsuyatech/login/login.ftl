@@ -4,7 +4,7 @@
         ${msg("loginAccountTitle")}
     <#elseif section = "form">
 
-      <div class="login-subtitle" data-qa-id="login-subtitle">${msg("welcomeIntro")}</div>
+      <div class="login-subtitle" data-qa-id="login-subtitle">${msg("signinIntro")}</div>
 
       <div id="kc-form">
         <div id="kc-form-wrapper">

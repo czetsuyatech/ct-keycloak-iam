@@ -1,41 +1,38 @@
 #!/bin/bash -e
 
-###############################
-# Download and Build Keycloak #
-###############################
+### ------------------------- Download Keycloak ------------------------- ###
 
 cd /opt/jboss/
 
-keycloakDistLocalFile="/opt/jboss/keycloak_install_stage/downloads/$KEYCLOAK_DIST_FILE"
+keycloakDistFile="/opt/jboss/keycloak_install_stage/downloads/$KEYCLOAK_DIST_FILE"
 keycloakDistUrl="$KEYCLOAK_DIST_BASE$KEYCLOAK_DIST_FILE"
 
-if [ -e $keycloakDistLocalFile ];
+if [ -e $keycloakDistFile ];
 then
-    echo "Keycloak from downloads folder: $keycloakDistLocalFile"
-    tar zxf $keycloakDistLocalFile
+    echo "Keycloak from downloads folder: $keycloakDistFile"
 else
     echo "Keycloak from remote source: $keycloakDistUrl"
-    curl -L $keycloakDistUrl | tar zx
+    keycloakDistFile = $keycloakDistUrl
 fi
 
-mv /opt/jboss/keycloak-??.?.?* /opt/jboss/keycloak
+tar zxf ${keycloakDistFile}
+mv /opt/jboss/keycloak-??.?.?* ${JBOSS_HOME}
+rm ${keycloakDistFile}
+chown -R jboss:0 ${JBOSS_HOME}
+chmod -R g+rw ${JBOSS_HOME}
 
-##########################
-# Install Custom Theme/s #
-##########################
+### ------------------------- Install Theme ------------------------- ###
 
 mkdir -p /opt/jboss/keycloak/themes
 cp -R /opt/jboss/keycloak_install_stage/themes/* /opt/jboss/keycloak/themes
 
-###########################
-# Create Database Modules #
-###########################
+### ------------------------- Create Database Modules ------------------------- ###
 
-mkdir -p /opt/jboss/keycloak/modules/system/layers/base/com/mysql/jdbc/main
-cd /opt/jboss/keycloak/modules/system/layers/base/com/mysql/jdbc/main
+mkdir -p ${JBOSS_HOME}/modules/system/layers/base/com/mysql/main
 
 mysqlConnectorLocalFile="/opt/jboss/keycloak_install_stage/downloads/$JDBC_MYSQL_JAR_FILE"
 mysqlConnectorUrl="$JDBC_MYSQL_JAR_BASE$JDBC_MYSQL_JAR_FILE"
+
 if [ -e $mysqlConnectorLocalFile ];
 then
     echo "MySql connector from downloads folder: $mysqlConnectorLocalFile"
@@ -45,11 +42,10 @@ else
     curl -O "$mysqlConnectorUrl"
 fi
 
-cp /opt/jboss/modules/databases/mysql/module.xml .
+cp /opt/jboss/modules/databases/mysql/module.xml ${JBOSS_HOME}/modules/system/layers/base/com/mysql/main
+sed -i "s|\[MYSQL\_VERSION\]|${MYSQL_VERSION}|g" ${JBOSS_HOME}/modules/system/layers/base/com/mysql/main/module.xml
 
-##############################
-# Install Keycloak Providers #
-##############################
+### ------------------------- Install Keycloak Providers ------------------------- ###
 
 mkdir -p /opt/jboss/keycloak/providers
 cp /opt/jboss/keycloak_install_stage/keycloak_providers/*.jar /opt/jboss/keycloak/providers
@@ -57,14 +53,7 @@ cp /opt/jboss/keycloak_install_stage/keycloak_providers/*.jar /opt/jboss/keycloa
 echo "Providers installed"
 ls -laR /opt/jboss/keycloak/providers
 
-###################
-# Set Permissions #
-###################
-
-echo "jboss:x:1000:jboss" >> /etc/group
-echo "jboss:x:1000:1000:JBoss user:/opt/jboss:/sbin/nologin" >> /etc/passwd
-chown -R jboss:jboss /opt/jboss
-chmod -R g+rw /opt/jboss
+### ------------------------- Cleanup ------------------------- ###
 
 rm -rf /opt/jboss/keycloak/standalone/tmp/auth
 rm -rf /opt/jboss/keycloak/domain/tmp/auth

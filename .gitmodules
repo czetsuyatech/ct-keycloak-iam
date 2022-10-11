@@ -2,3 +2,11 @@
 	path = ct-keycloak-spis
 	url = git@github.com:czetsuya/ct-keycloak-spis.git
 	branch = main
+[submodule "ct-keycloak-quarkus-security"]
+	path = ct-keycloak-quarkus-security
+	url = git@github.com:czetsuya/ct-keycloak-quarkus-security.git
+	branch = main
+[submodule "ct-keycloak-spring-security"]
+	path = ct-keycloak-spring-security
+	url = git@github.com:czetsuya/ct-keycloak-spring-security.git
+	branch = main

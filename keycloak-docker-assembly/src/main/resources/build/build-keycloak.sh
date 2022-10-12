@@ -47,13 +47,13 @@ sed -i "s|\[MYSQL\_VERSION\]|${MYSQL_VERSION}|g" ${JBOSS_HOME}/modules/system/la
 
 ### ------------------------- Install Keycloak Providers ------------------------- ###
 
-mkdir -p /opt/jboss/keycloak/providers
-cp /opt/jboss/keycloak_install_stage/keycloak_providers/*.jar /opt/jboss/keycloak/providers
+mkdir -p ${JBOSS_HOME}/providers
+cp /opt/jboss/keycloak_install_stage/keycloak_providers/*.jar ${JBOSS_HOME}/providers
 
 echo "Providers installed"
-ls -laR /opt/jboss/keycloak/providers
+ls -laR ${JBOSS_HOME}/providers
 
 ### ------------------------- Cleanup ------------------------- ###
 
-rm -rf /opt/jboss/keycloak/standalone/tmp/auth
-rm -rf /opt/jboss/keycloak/domain/tmp/auth
+rm -rf ${JBOSS_HOME}/standalone/tmp/auth
+rm -rf ${JBOSS_HOME}/domain/tmp/auth

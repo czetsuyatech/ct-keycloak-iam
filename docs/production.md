@@ -44,3 +44,12 @@ You will need to set the following environment variables correctly.
 - DB_USER
 - DB_PASSWORD
 - DB_JDBC_PARAMS
+
+## Compatibility Version Tested
+
+| Keycloak | MySQL  |
+|----------|--------|
+| 16.1.1   | 8.0.29 |
+| 12.0.4   | 8.0.22 |
+
+_*These values can be changed in the Dockerfile file._

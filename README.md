@@ -4,6 +4,8 @@ This project extends the Keycloak authentication server to cover complicated ent
 multi-tenancy, custom storage, n-level resellers by extending Keycloak through its SPIs such as storage,
 authentication, identity provider, etc.
 
+This project is using the Pre-Quarkus version of Keycloak.
+
 ## Features
 
 ### Custom login page

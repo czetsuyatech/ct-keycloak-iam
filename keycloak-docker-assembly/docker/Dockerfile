@@ -6,7 +6,7 @@ FROM openjdk:11.0.7-jdk-slim-buster
 
 ### ------------------------- Environment Variables ------------------------- ###
 
-ENV KEYCLOAK_VERSION 12.0.4
+ENV KEYCLOAK_VERSION 16.1.1
 ENV JDBC_MYSQL_VERSION 8.0.22
 ENV JDBC_POSTGRES_VERSION 42.5.0
 
@@ -14,7 +14,7 @@ ENV LAUNCH_JBOSS_IN_BACKGROUND 1
 ENV PROXY_ADDRESS_FORWARDING false
 ENV JBOSS_HOME /opt/jboss/keycloak
 ENV LANG en_US.UTF-8
-ENV KEYCLOAK_IMPORT /opt/jboss/keycloak_install_stage/realms/ct-realm-dev.json
+ENV KEYCLOAK_IMPORT /opt/jboss/keycloak_install_stage/realms/ct-realm-dev-${KEYCLOAK_VERSION}.json
 
 ### ------------------------- Bash Arguments ------------------------- ###
 

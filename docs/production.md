@@ -44,6 +44,7 @@ You will need to set the following environment variables correctly.
 - DB_USER
 - DB_PASSWORD
 - DB_JDBC_PARAMS
+- KEYCLOAK_IMPORT - uncomment this parameter in the docker-compose file
 
 ## Compatibility Version Tested
 

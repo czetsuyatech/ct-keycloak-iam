@@ -31,8 +31,7 @@ services:
       DB_PASSWORD: ipiel
       DB_JDBC_PARAMS: useSSL=false&allowPublicKeyRetrieval=true
 
-      # Uncomment when in production
-      # KEYCLOAK_IMPORT: /opt/jboss/keycloak_install_stage/realms/ct-realm-prod.json
+      KEYCLOAK_IMPORT: /opt/jboss/keycloak_install_stage/realms/ct-realm-dev-16.1.1.json
       KEYCLOAK_USER: keycloak.admin
       KEYCLOAK_PASSWORD: keycloak.admin
 
